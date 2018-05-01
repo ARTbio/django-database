@@ -20,6 +20,7 @@ from .models import Patients, Sequencing
 class IndexView(generic.ListView):
     template_name = 'db_conectaml/index.html'
     context_object_name = 'latest_patient_list'
+    paginate_by = 3
     def get_queryset(self):
         """Return the last five published questions."""
         return Patients.objects.order_by('-date_diagnosis')[:5]
