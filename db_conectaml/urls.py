@@ -10,5 +10,6 @@ urlpatterns = [
     # ex: /dbconect/2/
     path('<int:pk>/', views.DetailView.as_view(), name='detail'),
     # ex: /dbconect/2/sequence/
-    path('<int:sequencing_id>/sequence/', views.sequence, name='sequence')
+    path('<int:sequencing_id>/sequence/', views.sequence, name='sequence'),
+    path('searchpatient/', views.searchpatient, name='searchpatient')
 ]

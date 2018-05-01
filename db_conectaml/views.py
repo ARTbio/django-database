@@ -33,3 +33,5 @@ class DetailView(generic.DetailView):
 def sequence(request, sequencing_id):
     return HttpResponse("specifications of  %s." % sequencing_id)
 
+def searchpatient(request):
+    return render(request, 'db_conectaml/search_patients.html')
