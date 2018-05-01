@@ -1,0 +1,13 @@
+<h1>{{ patient.name }}</h1>
+<ul>
+<li>Sexe: {{ patient.sex }}</li>
+<li>Age: {{ patient.age }}</li>
+<li>Date du diagnostic: {{ patient.date_diagnosis }}</li>
+</ul>
+
+
+<ul>
+{% for sequence in patient.sequencing_set.all %}
+    <li>{{ sequence.file_path }}</li>
+{% endfor %}
+</ul>
