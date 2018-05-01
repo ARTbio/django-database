@@ -1,8 +1,13 @@
-{% load static %}
+{% extends "db_conectaml/base_generic.html" %}
 
-<link rel="stylesheet" type="text/css" href="{% static 'db_conectaml/style.css' %}" />
+{% block content %}
+<h1>Conect-AML Database</h1>
 
+  <p>Welcome to <em>Conect-AML DB</em>, a basic Django website to manage Connect-AML</p>
 
+<h2>Dynamic content</h2>
+
+  <p>The database has the following records:</p>
 {% if latest_patient_list %}
     <ul>
     {% for patient in latest_patient_list %}
@@ -12,3 +17,4 @@
 {% else %}
     <p>No patients are available.</p>
 {% endif %}
+{% endblock %}
