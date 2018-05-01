@@ -1,0 +1,17 @@
+<h1>{{ patient.name }}</h1>
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'dbconect:detail' patient.id %}" method="post">
+
+<ul>
+<li>Sexe: {{ patient.sex }}</li>
+<li>Age: {{ patient.age }}</li>
+<li>Date du diagnostic: {{ patient.date_diagnosis }}</li>
+</ul>
+
+
+<ul>
+{% for sequence in patient.sequencing_set.all %}
+    <li>{{ sequence.file_path }}</li>
+{% endfor %}
+</ul>
