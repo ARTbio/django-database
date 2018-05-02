@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from django.views import generic
 from django.template import loader
+from django.db.models import Q
 
 from django.http import HttpResponse
 
@@ -34,4 +35,20 @@ def sequence(request, sequencing_id):
     return HttpResponse("specifications of  %s." % sequencing_id)
 
 def searchpatient(request):
-    return render(request, 'db_conectaml/search_patients.html')
+    '''
+    To do: switch to class style and paginate
+    '''
+    if request.method == 'GET':
+        query= request.GET.get('q')
+        submitbutton= request.GET.get('submit')
+        if query is not None:
+            lookups= Q(name__icontains=query) | Q(sex__icontains=query) | Q(age__icontains=query)
+            results= Patients.objects.filter(lookups).distinct()
+            context={'results': results,
+                     'submitbutton': submitbutton}
+            return render(request, 'db_conectaml/search_patients.html', context)
+        else:
+            return render(request, 'db_conectaml/search_patients.html')
+    else:
+        return render(request, 'db_conectaml/search_patients.html')
+

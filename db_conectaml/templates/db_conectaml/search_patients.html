@@ -1,6 +1,39 @@
 {% extends "db_conectaml/base_generic.html" %}
 
 {% block content %}
+<h1>Search database</h1>
+Fields Identifier (Name) and Sex will be searched
+<p>
+<form action="{% url 'dbconect:searchpatient' %}" method="GET" value="{{request.GET.q}}">
+Search <input type="text" size="50" name="q" value="{{request.GET.q}}" placeholder="Search patients, sex, age"/>
+<input type="submit" name="submit" value="Search"/>
+</form>
+
+
+    {% if submitbutton == 'Search' and request.GET.q != '' %}
+        {% if results %}
+            <h1>Results for <b>{{ request.GET.q }}</b></h1>
+            <br/>
+            {% for result in results %}
+                <p>
+                Identifier: {{result.name}}
+                <br/>
+                Sex: {{result.sex}}
+                <br/>
+                Age: {{result.age}} ans
+                <br/>
+                <a href="{% url 'dbconect:detail' result.id %}">See record</a>
+                <hr>
+            {% endfor %}
+        {% else %}
+            No search results for this query
+       {% endif %}
+    {% endif %}
+
+{% endblock %}
+
+{% comment %}
+{% block content %}
 
     <h1>Search Patients</h1>
     <form action="/searchpatient/" method="GET">
@@ -11,3 +44,4 @@
         <input type="submit" value="Submit" />
     </form>
 {% endblock %}
+{% endcomment %}
