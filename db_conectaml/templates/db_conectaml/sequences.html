@@ -1,0 +1,11 @@
+{% extends "db_conectaml/base_generic.html" %}
+
+{% block content %}
+
+    <h2>Sequence files</h2>
+    {% for sequence in sequence.sequencing_set.all %}
+        <li>{{ sequence.file_path }}</li>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
