@@ -19,6 +19,7 @@ from django.urls import path
 
 
 urlpatterns = [
-    path('dbconect/', include('db_conectaml.urls')),
     path('admin/', admin.site.urls),
+    path('dbconect/', include('db_conectaml.urls')),
+    path('drosobase/', include('drosobase.urls'))
 ]

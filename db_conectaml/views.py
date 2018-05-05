@@ -24,7 +24,7 @@ class IndexView(generic.ListView):
     paginate_by = 3
     def get_queryset(self):
         """Return the last five published questions."""
-        return Patients.objects.order_by('-date_diagnosis')[:5]
+        return Patients.objects.order_by('-date_diagnosis')
 
 class DetailView(generic.DetailView):
     model = Patients

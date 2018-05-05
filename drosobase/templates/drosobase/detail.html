@@ -1,0 +1,12 @@
+{% extends "drosobase/base_generic.html" %}
+
+{% block content %}
+
+    <h1>{{ stock.post_title }}</h1>
+    <ul>
+    <li>Stock Name: {{ stock.post_title }}</li>
+    <li>Stock details: {{ stock.post_content }}</li>
+    <li>Date du diagnostic: {{ stock.post_date }}</li>
+    </ul>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends "drosobase/base_generic.html" %}
+
+{% block content %}
+<h1>DrosoBase</h1>
+
+  <p>Welcome to <em>DrosoBase</em>, a simple Django website to manage Laboratory Fly Stocks</p>
+
+<h4>The database has the following records:</h4>
+
+{% if stock_list %}
+    <ul>
+    {% for stock in stock_list %}
+        <li><a href="{% url 'drosobase:detail' stock.id %}">{{ stock.post_title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No stock is available.</p>
+{% endif %}
+{% endblock %}
