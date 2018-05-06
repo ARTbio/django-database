@@ -29,6 +29,7 @@ class Stocks(models.Model):
     class Meta:
         db_table = 'stocks'
 
+
     def __str__(self):
         return str(self.post_title)
 

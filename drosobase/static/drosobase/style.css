@@ -16,3 +16,7 @@
 li a {
     color: green;
 }
+
+.carriage-return { 
+    white-space: pre; 
+}
