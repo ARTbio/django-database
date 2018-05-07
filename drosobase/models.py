@@ -30,6 +30,26 @@ class Stocks(models.Model):
         db_table = 'stocks'
 
 
+    def get_next(self):
+        """
+        Get the next object by primary key order
+        """
+        next = self.__class__.objects.filter(pk__gt=self.pk)
+        try:
+            return next[0]
+        except IndexError:
+            return False
+
+    def get_prev(self):
+        """
+        Get the previous object by primary key order
+        """
+        prev = self.__class__.objects.filter(pk__lt=self.pk).order_by('-pk')
+        try:
+            return prev[0]
+        except IndexError:
+            return False
+
     def __str__(self):
         return str(self.post_title)
 

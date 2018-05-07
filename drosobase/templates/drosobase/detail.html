@@ -6,18 +6,10 @@
     <li>Stock Name: {{ stock.post_title }}</li>
     <li>Stock details: {{ stock.post_content }}</li>
     <li>Input Date: {{ stock.post_date }}</li>
-
-{% comment %}
-{% load drosobase_extras %}
-{% with next_element=stock.id|next:forloop.counter0 %}
-{% with previous_element=stock.id|previous:forloop.counter0 %}
-
-    <li><a href="{% url 'drosobase:detail' next_element %}" class="historylink">« previous</a></li>
-
-{% endwith %}
-{% endwith %}
-{% endcomment %}
-
     </ul>
+
+    <a href="{% url 'drosobase:detail' stock.get_prev.pk %}" class="historylink">« previous {{ stock.get_prev.pk }}</a>
+    |
+    <a href="{% url 'drosobase:detail' stock.get_next.pk %}" class="historylink">next » {{ stock.get_next.pk }}</a>
 
 {% endblock %}
