@@ -8,8 +8,8 @@
     <li>Input Date: {{ stock.post_date }}</li>
     </ul>
 
-    <a href="{% url 'drosobase:detail' stock.get_prev.pk %}" class="historylink">« previous {{ stock.get_prev.pk }}</a>
+    <a href="{% url 'drosobase:detail' stock.get_prev %}" class="historylink">« previous {{ stock.get_prev }}</a>
     |
-    <a href="{% url 'drosobase:detail' stock.get_next.pk %}" class="historylink">next » {{ stock.get_next.pk }}</a>
+    <a href="{% url 'drosobase:detail' stock.get_next %}" class="historylink">next » {{ stock.get_next }}</a>
 
 {% endblock %}

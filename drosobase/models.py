@@ -36,9 +36,9 @@ class Stocks(models.Model):
         """
         next = self.__class__.objects.filter(pk__gt=self.pk)
         try:
-            return next[0]
+            return next[0].pk
         except IndexError:
-            return False
+            return self.__class__.objects.order_by('pk').first().pk
 
     def get_prev(self):
         """
@@ -46,9 +46,9 @@ class Stocks(models.Model):
         """
         prev = self.__class__.objects.filter(pk__lt=self.pk).order_by('-pk')
         try:
-            return prev[0]
+            return prev[0].pk
         except IndexError:
-            return False
+            return self.__class__.objects.order_by('pk').last().pk
 
     def __str__(self):
         return str(self.post_title)
