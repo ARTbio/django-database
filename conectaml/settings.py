@@ -27,7 +27,7 @@ DEBUG = False
 
 #Security deployment
 
-SECURE_CONTENT_TYPE_NOSNIFF = True
+#SECURE_CONTENT_TYPE_NOSNIFF = True
 # SECURE_BROWSER_XSS_FILTER = True
 # SECURE_SSL_REDIRECT = True
 # SESSION_COOKIE_SECURE = True
@@ -136,3 +136,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
