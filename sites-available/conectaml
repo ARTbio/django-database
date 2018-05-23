@@ -1,0 +1,15 @@
+server {
+    listen 80;
+    server_name 130.211.61.206;
+
+    location = /favicon.ico { access_log off; log_not_found off; }
+    location /static/ {
+        root /home/chris/conectaml;
+    }
+
+    location / {
+        include         uwsgi_params;
+        uwsgi_pass      unix:/home/chris/conectaml/conectaml.sock;
+    }
+
+}
