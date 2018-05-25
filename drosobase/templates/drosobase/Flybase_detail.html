@@ -1,0 +1,18 @@
+{% extends "drosobase/base_generic.html" %}
+{% block content %}
+
+    <h1>{{ flybase_stock.FBst_idx }}</h1>
+    <ul class="carriage-return">
+    <li>Collection: {{ flybase_stock.collection_name }}</li>
+    <li>Stock Type & CV: {{ flybase_stock.stock_type_cv }}</li>
+    <li>Species: {{ flybase_stock.species }}</li>
+    <li>Genotype: {{ flybase_stock.FB_genotype }}</li>
+    <li>Description: {{ flybase_stock.description }}</li>
+    <li>Stock Number: {{ flybase_stock.stock_number }}</li>
+    </ul>
+
+    <a href="{% url 'drosobase:flybase_detail' flybase_stock.get_prev %}" class="historylink">« previous {{ flybase_stock.get_prev }}</a>
+    |
+    <a href="{% url 'drosobase:flybase_detail' flybase_stock.get_next %}" class="historylink">next » {{ flybase_stock.get_next }}</a>
+
+{% endblock %}
