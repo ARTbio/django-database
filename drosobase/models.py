@@ -53,6 +53,51 @@ class Stocks(models.Model):
     def __str__(self):
         return str(self.post_title)
 
+
+class Flybase(models.Model):
+    FBst_idx = models.CharField(max_length=12, default="")
+    collection_name = models.CharField(max_length=12, default="")
+    stock_type_cv = models.TextField()
+    species = models.CharField(max_length=10, default="")
+    FB_genotype = models.TextField()
+    description = models.TextField()
+    stock_number = models.CharField(max_length=12, default="")
+
+    class Meta:
+        db_table = 'flybase'
+
+
+    def get_next(self):
+        """
+        Get the next object by primary key order
+        """
+        next = self.__class__.objects.filter(pk__gt=self.pk)
+        try:
+            return next[0].pk
+        except IndexError:
+            return self.__class__.objects.order_by('pk').first().pk
+
+    def get_prev(self):
+        """
+        Get the previous object by primary key order
+        """
+        prev = self.__class__.objects.filter(pk__lt=self.pk).order_by('-pk')
+        try:
+            return prev[0].pk
+        except IndexError:
+            return self.__class__.objects.order_by('pk').last().pk
+
+    def __str__(self):
+        prelist = [str(self.FBst_idx),
+                   str(self.collection_name),
+                   str(self.stock_type_cv),
+                   str(self.species),
+                   str(self.FB_genotype),
+                   str(self.description),
+                   str(self.stock_number)]
+        return "\t".join(prelist)
+
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=80)
 

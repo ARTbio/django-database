@@ -15,7 +15,7 @@ from django.http import Http404
 
 # Create your views here.
 
-from .models import Stocks
+from .models import Stocks, Flybase
 
 
 class IndexView(generic.ListView):
@@ -23,14 +23,30 @@ class IndexView(generic.ListView):
     context_object_name = 'stock_list'
     paginate_by = 40
     def get_queryset(self):
-        """Return the last five published stocks."""
+        """Return the last published stocks, paginated by 40."""
         return Stocks.objects.order_by('-post_date')
+
+
+class FlybaseIndexView(generic.ListView):
+    template_name = 'drosobase/flybase.html'
+    context_object_name = 'flybase_list'
+    paginate_by = 40
+    def get_queryset(self):
+        """Returns Flybase stocks ordered by FBst ascending, paginated by 40"""
+        return Flybase.objects.order_by('FBst_idx')
 
 
 class DetailView(generic.DetailView):
     model = Stocks
     context_object_name = 'stock'
     template_name = 'drosobase/detail.html'
+
+
+class FlybaseDetailView(generic.DetailView):
+    model = Flybase
+    context_object_name = 'flybase_stock'
+    template_name = 'drosobase/Flybase_detail.html'
+
 
 def searchstock(request):
     '''
