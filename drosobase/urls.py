@@ -13,5 +13,8 @@ urlpatterns = [
     # ex: /drosobase/Flybase/
     path('Flybase/', views.FlybaseIndexView.as_view(), name='FB_index'),
    # ex: /drosobase/Flybase/2/
-    path('Flybase/<int:pk>/', views.FlybaseDetailView.as_view(), name='flybase_detail')
+    path('Flybase/<int:pk>/', views.FlybaseDetailView.as_view(), name='flybase_detail'),
+    # ex: /drosobase/searchflybase/
+    path('searchflybase/', views.searchflybase, name='searchflybase'),
+
 ]
