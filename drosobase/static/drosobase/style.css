@@ -1,4 +1,5 @@
 .sidebar-nav {
+    font-size: 20px;
     margin-top: 20px;
     padding: 0;
     list-style: none;
@@ -7,7 +8,6 @@
 .sidebar-nav a {
     padding: 8px 8px 8px 32px;
     text-decoration: none;
-    font-size: 25px;
     color: #818181;
     display: block;
     transition: 0.3s;

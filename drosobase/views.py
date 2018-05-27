@@ -66,3 +66,22 @@ def searchstock(request):
     else:
         return render(request, 'drosobase/search_stocks.html')
 
+
+def searchflybase(request):
+    '''
+    To do: switch to class style and paginate
+    '''
+    if request.method == 'GET':
+        query= request.GET.get('q')
+        submitbutton= request.GET.get('submit')
+        if query is not None:
+            lookups= Q(FBst_idx__icontains=query) | Q(collection_name__icontains=query) | Q(stock_type_cv__icontains=query) | Q(species__icontains=query) | Q(FB_genotype__icontains=query) | Q(description__icontains=query) | Q(stock_number__icontains=query)
+            results= Flybase.objects.filter(lookups).distinct()
+            context={'results': results,
+                     'submitbutton': submitbutton}
+            return render(request, 'drosobase/search_flybase.html', context)
+        else:
+            return render(request, 'drosobase/search_flybase.html')
+    else:
+        return render(request, 'drosobase/search_flybase.html')
+

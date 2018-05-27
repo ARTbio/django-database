@@ -10,12 +10,12 @@
     {% for stock in flybase_list %}
         <li>
             <a href="{% url 'drosobase:flybase_detail' stock.id %}">{{ stock.FBst_idx }}</a> | 
-            {{ stock.FBst_idx }} |
-            {{ stock.FBst_idx }} |
-            {{ stock.FBst_idx }} |
-            {{ stock.FBst_idx }} |
-            {{ stock.FBst_idx }} |
-            {{ stock.FBst_idx }}
+            {{ stock.collection_name }} |
+            {{ stock.stock_type_cv }} |
+            {{ stock.species }} |
+            {{ stock.FB_genotype }} |
+            {{ stock.description }} |
+            {{ stock.stock_number }}
         </li>
     {% endfor %}
     </ul>

@@ -1,0 +1,30 @@
+{% extends "drosobase/base_generic.html" %}
+
+{% block content %}
+<h1>Search Flybase Stocks</h1>
+Stock names and stock details will be searched
+<p>
+<form action="{% url 'drosobase:searchflybase' %}" method="GET" value="{{request.GET.q}}">
+    Search <input type="text" size="50" name="q" value="{{request.GET.q}}" placeholder="Search stock names and details"/>
+<input type="submit" name="submit" value="Search"/>
+</form>
+
+    {% if submitbutton == 'Search' and request.GET.q != '' %}	
+        {% if results %}
+            <h1>Results for <b>{{ request.GET.q }}</b></h1>
+            <br/>
+            {% for result in results %}
+                Stock Fbst: <a href="{% url 'drosobase:flybase_detail' result.id %}">
+                    {{result.FBst_idx}}
+                            </a>
+                <br/>
+                Genotype: {{result.FB_genotype}}
+                <hr>
+            {% endfor %}
+        {% else %}
+            No search results for this query
+       {% endif %}
+    {% endif %}
+
+{% endblock %}
+
